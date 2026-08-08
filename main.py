@@ -10,6 +10,7 @@ import uvicorn
 
 # === ТОКЕН БОТА ===
 BOT_TOKEN = "8955747717:AAF55clB0i20xm0z3eU5lIl52hF-yqYYC6g"
+WEBAPP_URL = "https://aurra-bot-2.onrender.com"
 
 app = FastAPI()
 bot = Bot(token=BOT_TOKEN)
@@ -19,12 +20,10 @@ templates = Jinja2Templates(directory="templates")
 
 @dp.message(CommandStart())
 async def start_cmd(message: types.Message):
-    web_app_url = os.getenv "https://aurra-bot-2.onrender.com"
-    
     kb = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(
             text="🔥 Оценить фото", 
-            web_app=WebAppInfo(url=web_app_url)
+            web_app=WebAppInfo(url=WEBAPP_URL)
         )]
     ])
     await message.answer(
