@@ -19,7 +19,7 @@ templates = Jinja2Templates(directory="templates")
 
 @dp.message(CommandStart())
 async def start_cmd(message: types.Message):
-    web_app_url = os.getenv("RENDER_EXTERNAL_URL", "https://google.com")
+    web_app_url = os.getenv "https://aurra-bot-2.onrender.com"
     
     kb = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(
