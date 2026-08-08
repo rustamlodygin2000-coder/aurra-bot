@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+   <html lang="ru">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Aura Rate</title>
+       <script src="https://telegram.org/js/telegram-web-app.js"></script>
+       <script src="https://cdn.tailwindcss.com"></script>
+   </head>
+   <body class="bg-gray-900 text-white flex flex-col h-screen justify-between p-4 select-none">
+       <div class="flex justify-between items-center text-sm font-bold text-gray-400">
+           <span>🔥 АУРА</span>
+           <span id="user-name">Аноним</span>
+       </div>
+
+       <div class="relative w-full h-[65vh] bg-gray-800 rounded-3xl overflow-hidden shadow-2xl flex items-center justify-center my-auto border border-gray-700">
+           <img id="photo" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500" class="w-full h-full object-cover">
+       </div>
+
+       <div class="flex gap-4 w-full mb-2">
+           <button onclick="rate('dislike')" class="flex-1 bg-red-600/20 border border-red-500/50 text-red-500 font-bold py-4 rounded-2xl text-2xl active:scale-95">💩</button>
+           <button onclick="rate('like')" class="flex-1 bg-green-600/20 border border-green-500/50 text-green-500 font-bold py-4 rounded-2xl text-2xl active:scale-95">🔥</button>
+       </div>
+
+       <script>
+           const tg = window.Telegram.WebApp;
+           tg.expand();
+
+           if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+               document.getElementById('user-name').innerText = `@${tg.initDataUnsafe.user.username || tg.initDataUnsafe.user.first_name}`;
+           }
+
+           function rate(action) {
+               if (tg.HapticFeedback) tg.HapticFeedback.impactOccurred('medium');
+               alert(action === 'like' ? 'Вы поставили 🔥!' : 'Вы поставили 💩!');
+           }
+       </script>
+   </body>
+   </html>
